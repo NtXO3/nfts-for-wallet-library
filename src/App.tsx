@@ -12,7 +12,7 @@ function App() {
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto h-screen py-32 px-8">
+    <div className="w-full max-w-6xl mx-auto min-h-screen py-24 px-8">
       <div className="flex items-center justify-between mb-8 gap-8 flex-wrap">
         <h1 className="text-3xl font-bold">
           All NFTs for&nbsp;
