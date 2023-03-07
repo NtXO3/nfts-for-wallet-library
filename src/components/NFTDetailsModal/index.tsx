@@ -13,6 +13,7 @@ type NFTDetailsModalProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   floorPrice: number | null;
+  address?: `0x${string}`;
 };
 
 const NFTDetailsModal: FunctionComponent<NFTDetailsModalProps> = ({
@@ -20,6 +21,7 @@ const NFTDetailsModal: FunctionComponent<NFTDetailsModalProps> = ({
   isOpen,
   setIsOpen,
   floorPrice,
+  address,
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
@@ -80,6 +82,26 @@ const NFTDetailsModal: FunctionComponent<NFTDetailsModalProps> = ({
                 <img src={ethIcon} className="w-4 mr-2" />
                 {floorPrice ?? "Unknown"}
               </h3>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 mb-6">
+            <div>
+              <span
+                className="text-gray-400 block text-sm sm:text-base"
+                id="nft-title-label"
+              >
+                Owner Address
+              </span>
+              <a
+                className="font-semibold text-lg text-sky-500 hover:underline"
+                aria-labelledby="nft-title-label"
+                href={`https://etherscan.io/address/${address}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {formatAddress(address)}
+              </a>
             </div>
           </div>
 

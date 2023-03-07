@@ -9,9 +9,14 @@ import { NFTImage } from "../NFTImage";
 type NFTCardProps = {
   nft?: OwnedNft;
   isLoading?: boolean;
+  address?: `0x${string}`;
 };
 
-const NFTCard: FunctionComponent<NFTCardProps> = ({ nft, isLoading }) => {
+const NFTCard: FunctionComponent<NFTCardProps> = ({
+  nft,
+  isLoading,
+  address,
+}) => {
   const { floorPrice, isLoading: floorPriceIsLoading } = useNftFloorPrice({
     contractAddress: nft?.contract.address as `0x${string}` | undefined,
   });
@@ -87,6 +92,7 @@ const NFTCard: FunctionComponent<NFTCardProps> = ({ nft, isLoading }) => {
         setIsOpen={setIsOpen}
         nft={nft}
         floorPrice={floorPrice}
+        address={address}
       />
     </>
   );

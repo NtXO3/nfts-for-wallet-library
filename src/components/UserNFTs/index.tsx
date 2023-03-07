@@ -27,7 +27,9 @@ const UserNFTs: FunctionComponent<UserNFTsProps> = ({ address }) => {
             .map((_, index) => (
               <NFTCard isLoading key={`skeleton-nft-${index}`} />
             ))
-        : data?.map((nft) => <NFTCard key={nft.title} nft={nft} />)}
+        : data?.map((nft) => (
+            <NFTCard key={nft.title} nft={nft} address={address} />
+          ))}
     </div>
   );
 };
