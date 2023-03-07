@@ -1,12 +1,10 @@
 import { FunctionComponent } from "react";
 import { useOwnedNfts } from "../../hooks";
+import { useAddress } from "../../hooks/useAddress";
 import { NFTCard } from "../NFTCard";
 
-type UserNFTsProps = {
-  address: `0x${string}`;
-};
-
-const UserNFTs: FunctionComponent<UserNFTsProps> = ({ address }) => {
+const UserNFTs: FunctionComponent = () => {
+  const { address } = useAddress();
   const { data, isLoading } = useOwnedNfts({ address });
 
   if (!data?.length && !isLoading) {
@@ -27,9 +25,7 @@ const UserNFTs: FunctionComponent<UserNFTsProps> = ({ address }) => {
             .map((_, index) => (
               <NFTCard isLoading key={`skeleton-nft-${index}`} />
             ))
-        : data?.map((nft) => (
-            <NFTCard key={nft.title} nft={nft} address={address} />
-          ))}
+        : data?.map((nft) => <NFTCard key={nft.title} nft={nft} />)}
     </div>
   );
 };

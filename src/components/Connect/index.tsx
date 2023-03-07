@@ -1,14 +1,12 @@
 import { ethers } from "ethers";
 import { FunctionComponent, useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { useAddress } from "../../hooks/useAddress";
 import { Button } from "../Button";
 
-type ConnectProps = {
-  setAddress: (address: `0x${string}`) => void;
-};
-
-const Connect: FunctionComponent<ConnectProps> = ({ setAddress }) => {
+const Connect: FunctionComponent = () => {
   const [error, setError] = useState("");
+  const { setAddress } = useAddress();
   const {
     register,
     handleSubmit,

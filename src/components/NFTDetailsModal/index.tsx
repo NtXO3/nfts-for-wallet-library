@@ -1,19 +1,19 @@
 import { OwnedNft } from "alchemy-sdk";
 import { FunctionComponent, useState } from "react";
+import { FaDiscord, FaTwitter, FaGlobe, FaEthereum } from "react-icons/fa";
 import { formatAddress } from "../../utils";
 import { Modal } from "../Modal";
 import ethIcon from "../../assets/eth.svg";
-import { FaDiscord, FaTwitter, FaGlobe } from "react-icons/fa";
 import { SocialLink } from "../SocialLink";
 import { MdVerified } from "react-icons/md";
 import { NFTImage } from "../NFTImage";
+import { useAddress } from "../../hooks/useAddress";
 
 type NFTDetailsModalProps = {
   nft: OwnedNft;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   floorPrice: number | null;
-  address?: `0x${string}`;
 };
 
 const NFTDetailsModal: FunctionComponent<NFTDetailsModalProps> = ({
@@ -21,15 +21,18 @@ const NFTDetailsModal: FunctionComponent<NFTDetailsModalProps> = ({
   isOpen,
   setIsOpen,
   floorPrice,
-  address,
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const { address } = useAddress();
 
   return (
     <Modal setIsOpen={setIsOpen} isOpen={isOpen} title="NFT Details">
       <div className="flex flex-wrap">
         <div className="sm:w-[45%] w-full max-w-sm sm:pr-8 relative mb-8">
-          <NFTImage imageSrc={nft.media[0]?.gateway} />
+          <NFTImage
+            alt={`${nft.title} Image`}
+            imageSrc={nft.media[0]?.gateway}
+          />
 
           {nft.contract.openSea?.safelistRequestStatus === "verified" && (
             <div className="mt-4 flex items-center">
@@ -79,31 +82,32 @@ const NFTDetailsModal: FunctionComponent<NFTDetailsModalProps> = ({
                 Floor Price
               </span>
               <h3 className="font-semibold text-lg flex items-center">
-                <img src={ethIcon} className="w-4 mr-2" />
+                <FaEthereum className="mr-1" />
                 {floorPrice ?? "Unknown"}
               </h3>
             </div>
           </div>
-
-          <div className="grid grid-cols-2 gap-8 mb-6">
-            <div>
-              <span
-                className="text-gray-400 block text-sm sm:text-base"
-                id="nft-title-label"
-              >
-                Owner Address
-              </span>
-              <a
-                className="font-semibold text-lg text-sky-500 hover:underline"
-                aria-labelledby="nft-title-label"
-                href={`https://etherscan.io/address/${address}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {formatAddress(address)}
-              </a>
+          {address && (
+            <div className="grid grid-cols-2 gap-8 mb-6">
+              <div>
+                <span
+                  className="text-gray-400 block text-sm sm:text-base"
+                  id="nft-title-label"
+                >
+                  Owner Address
+                </span>
+                <a
+                  className="font-semibold text-lg text-sky-500 hover:underline"
+                  aria-labelledby="nft-title-label"
+                  href={`https://etherscan.io/address/${address}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {formatAddress(address)}
+                </a>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="mb-6">
             <span

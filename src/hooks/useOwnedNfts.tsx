@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { alchemy } from "../utils/web3";
 
 type UseOwnedNftsOptions = {
-  address: `0x${string}`;
+  address: `0x${string}` | null;
 };
 
 const useOwnedNfts = ({ address }: UseOwnedNftsOptions) => {

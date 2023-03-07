@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { Connect } from "./components";
 import { Button } from "./components/Button";
 import { UserNFTs } from "./components/UserNFTs";
+import { useAddress } from "./hooks/useAddress";
 import { formatAddress } from "./utils";
 
 function App() {
-  const [address, setAddress] = useState<`0x${string}` | null>(null);
+  const { address, setAddress } = useAddress();
 
   if (!address) {
-    return <Connect setAddress={setAddress} />;
+    return <Connect />;
   }
 
   return (
@@ -20,7 +20,7 @@ function App() {
         </h1>
         <Button onClick={() => setAddress(null)}>Disconnect</Button>
       </div>
-      <UserNFTs address={address} />
+      <UserNFTs />
     </div>
   );
 }

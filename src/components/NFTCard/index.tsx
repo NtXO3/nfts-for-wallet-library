@@ -1,22 +1,17 @@
 import { OwnedNft } from "alchemy-sdk";
 import { FunctionComponent, useState } from "react";
-import ethIcon from "../../assets/eth.svg";
 import { Skeleton } from "../Skeleton";
 import { useNftFloorPrice } from "../../hooks";
 import { NFTDetailsModal } from "../NFTDetailsModal";
 import { NFTImage } from "../NFTImage";
+import { FaEthereum } from "react-icons/fa";
 
 type NFTCardProps = {
   nft?: OwnedNft;
   isLoading?: boolean;
-  address?: `0x${string}`;
 };
 
-const NFTCard: FunctionComponent<NFTCardProps> = ({
-  nft,
-  isLoading,
-  address,
-}) => {
+const NFTCard: FunctionComponent<NFTCardProps> = ({ nft, isLoading }) => {
   const { floorPrice, isLoading: floorPriceIsLoading } = useNftFloorPrice({
     contractAddress: nft?.contract.address as `0x${string}` | undefined,
   });
@@ -42,7 +37,7 @@ const NFTCard: FunctionComponent<NFTCardProps> = ({
             </div>
 
             <h3 className="font-semibold text-lg flex items-center">
-              <img src={ethIcon} className="w-5 mr-2" />
+              <FaEthereum className="mr-1" />
               <Skeleton className="max-w-[9rem] w-full" height={28} />
             </h3>
           </div>
@@ -64,7 +59,7 @@ const NFTCard: FunctionComponent<NFTCardProps> = ({
         onClick={() => setIsOpen(true)}
       >
         <div className="flex flex-col h-full">
-          <NFTImage imageSrc={imageSrc} />
+          <NFTImage imageSrc={imageSrc} alt={`${nft.title} Image`} />
           <div className="flex flex-col justify-between flex-1">
             <div className="mb-4">
               <h2 className="font-semibold text-2xl mb-2">{nft.title}</h2>
@@ -76,7 +71,7 @@ const NFTCard: FunctionComponent<NFTCardProps> = ({
             </div>
 
             <h3 className="font-semibold text-lg flex items-center">
-              <img src={ethIcon} className="w-5 mr-2" />
+              <FaEthereum className="mr-1" />
               {floorPriceIsLoading ? (
                 <Skeleton width={76} height={18} />
               ) : (
@@ -92,7 +87,6 @@ const NFTCard: FunctionComponent<NFTCardProps> = ({
         setIsOpen={setIsOpen}
         nft={nft}
         floorPrice={floorPrice}
-        address={address}
       />
     </>
   );
