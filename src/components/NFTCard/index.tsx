@@ -1,12 +1,8 @@
 import { OwnedNft } from "alchemy-sdk";
-import { FunctionComponent, useEffect, useState } from "react";
-import { alchemy } from "../../utils/web3";
+import { FunctionComponent, useState } from "react";
 import ethIcon from "../../assets/eth.svg";
-import { Modal } from "../Modal";
-import { FaImage, FaDiscord } from "react-icons/fa";
-import { formatAddress } from "../../utils";
 import { Skeleton } from "../Skeleton";
-import { useNftFloorPrice } from "../../hooks/useNftFloorPrice";
+import { useNftFloorPrice } from "../../hooks";
 import { NFTDetailsModal } from "../NFTDetailsModal";
 import { NFTImage } from "../NFTImage";
 

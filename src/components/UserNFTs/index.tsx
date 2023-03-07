@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { useOwnedNfts } from "../../hooks/useOwnedNfts";
+import { useOwnedNfts } from "../../hooks";
 import { NFTCard } from "../NFTCard";
 
 type UserNFTsProps = {

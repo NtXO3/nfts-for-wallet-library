@@ -1,9 +1,4 @@
-import {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  FunctionComponent,
-  HTMLAttributes,
-} from "react";
+import { AnchorHTMLAttributes, FunctionComponent } from "react";
 
 const SocialLink: FunctionComponent<
   AnchorHTMLAttributes<HTMLAnchorElement>
