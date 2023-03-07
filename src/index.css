@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-gray-900 text-white;
+  }
+
+  .skeleton {
+    @apply h-4 inline-block relative overflow-hidden bg-slate-700 rounded-md animate-pulse;
+  }
+}
